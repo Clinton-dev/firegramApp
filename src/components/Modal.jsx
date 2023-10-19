@@ -1,14 +1,23 @@
+import { motion } from 'framer-motion';
 import React from 'react'
 
-function Modal({selectedImage, setSelectedImg}) {
+function Modal({ selectedImage, setSelectedImg }) {
   const handleModalClose = (e) => {
-    if(e.target.classList.contains('backdrop'))
-    setSelectedImg(null);
+    if (e.target.classList.contains('backdrop'))
+      setSelectedImg(null);
   }
   return (
-    <div className='backdrop' onClick={handleModalClose}>
-      <img src={selectedImage} alt="modal image" />
-    </div>
+    <motion.div className='backdrop' 
+     onClick={handleModalClose}
+     initial={{opacity:0}}
+     animate={{opacity: 1}}
+     >
+      <motion.img src={selectedImage} 
+        alt="modal image" 
+        initial={{y:"-100vh"}}
+        animate={{y:0}}
+      />
+    </motion.div>
   )
 }
 
